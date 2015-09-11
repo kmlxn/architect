@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>architect</title>
+        <link href="/static/vcard/css/styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="wrapper">
+
+            <div class="container">
+                <div class="head">
+                    <h1>{{ h1.text }}</h1>
+                    <ul class="categories">
+                        <li><a id="projects_nav" href="#">projects</a></li>
+                        <li><a id="contacts_nav" href="#">contacts</a></li>
+                        <li><a id="about_me_nav" href="#">about me</a></li>
+                    </ul>
+                </div>
+                <div id="content" class="content">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="projects" style="display: none">
+            <div class="project">
+                <div class="photo">
+                    <img src="projects/ja01.jpg" alt="" />
+                </div>
+                <span class="caption">Curved House</span>
+            </div>
+            <div class="project">
+                <div class="photo">
+                    <img src="projects/architecture-GP-House.jpg" alt="" />
+                </div>
+                <span class="caption">GP House</span>
+            </div>
+            <div class="project">
+                <div class="photo">
+                    <img src="projects/2013_aiany_design_awards_architecture_05-530x438.jpg" alt="" />
+                </div>
+                <span class="caption">Aiany Design Awards 2005</span>
+            </div>
+            <div class="project">
+                <div class="photo">
+                    <img src="projects/2010_australian_national_architecture_awards_08.jpg" alt="" />
+                </div>
+                <span class="caption">Australian National Architecture Awards 2008</span>
+            </div>
+        </div>
+        <div id="contacts" style="display: none">
+            <div class="contacts">
+                <ul id="contacts_container">
+                    <li>Phone: +998901234567</li>
+                    <li>Skype: pizza_neo</li>
+                    <li>Mail: pizza_neo@live.com</li>
+                    <li>Location: Tashkent, Uzbekistan</li>
+                </ul>
+            </div>
+        </div>
+        <div id="about_me" style="display: none">
+            <div id="about_me_container" class="about_me">
+            </div>
+        </div>
+        <script src="/static/vcard/js/jquery-1.11.3.min.js" charset="utf-8"></script>
+        <script src="/static/vcard/js/script.js" charset="utf-8"></script>
+    </body>
+</html>
