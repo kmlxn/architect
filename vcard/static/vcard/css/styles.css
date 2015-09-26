@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
 }
+html, body {
+    height: 100%;
+}
 body {
     background-color: white;
     color: grey;
@@ -10,6 +13,11 @@ body {
 a {
     color: grey;
     text-decoration: none;
+}
+canvas {
+    position: fixed;
+    overflow: hidden;
+    z-index: -100;
 }
 .wrapper {
     position: absolute;
@@ -33,4 +41,7 @@ a {
 }
 .contacts ul {
     list-style-type: none;
+}
+#stats {
+    display: none;
 }
