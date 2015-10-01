@@ -32,6 +32,7 @@ canvas {
 }
 .categories li {
     display: inline;
+    margin-right: 5px;
 }
 .photo img {
     width: 100% !important;
