@@ -43,6 +43,14 @@ canvas {
 .contacts ul {
     list-style-type: none;
 }
+ul.projects_tags {
+    list-style-type: none;
+    margin-left: 9px;
+}
+ul.projects_tags li {
+    display: inline;
+    margin-right: 5px;
+}
 #stats {
     display: none;
 }

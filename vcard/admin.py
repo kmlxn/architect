@@ -4,7 +4,7 @@ from . import models
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    fields = ['picture', 'caption']
+    fields = ['picture', 'caption', 'tag']
     list_display = ('caption', 'picture')
 
 
@@ -21,6 +21,13 @@ class TextOnSiteAdmin(admin.ModelAdmin):
 
 
 
+class ProjectTagAdmin(admin.ModelAdmin):
+    fields = ['caption', 'alias']
+    list_display = ('caption', 'alias')
+
+
+
 admin.site.register(models.Project, ProjectAdmin)
 admin.site.register(models.ContactInfo, ContactInfoAdmin)
 admin.site.register(models.TextOnSite, TextOnSiteAdmin)
+admin.site.register(models.ProjectTag, ProjectTagAdmin)
