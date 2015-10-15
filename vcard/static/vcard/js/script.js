@@ -8,7 +8,6 @@ $(document).ready(function() {
 var get_and_view_projects_tags = function(e) {
     $.ajax("/get_tags/", {
         success: function(tags) {
-            // console.log(tags[0]);
             var html = '<ul class="projects_tags" id="projects_tags">';
 
             for (var i = 0; i < tags.length; i++) {
@@ -20,7 +19,8 @@ var get_and_view_projects_tags = function(e) {
                     </li>';
             }
 
-            html += '</ul>';
+            html += '</ul>\
+                <div id="projects"></div>';
 
             $('#content').html(html);
             $('#projects_tags a').click(get_and_view_projects);
@@ -74,7 +74,6 @@ var get_and_view_projects = function(e) {
     var link = "/get_projects/" + $(this).attr('id') + "/";
     $.ajax(link, {
         success: function(projects) {
-            console.log(projects[0]);
             var html = '<div class="projects">';
 
             for (var i = 0; i < projects.length; i++) {
@@ -89,7 +88,7 @@ var get_and_view_projects = function(e) {
 
             html += '</div>';
 
-            $('#content').html(html);
+            $('#projects').html(html);
         },
         error: function(data) {
 
