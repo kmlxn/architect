@@ -1,11 +1,12 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Project, ContactInfo, TextOnSite, ProjectTag
 from django.http import HttpResponse
 from django.core import serializers
+from constance import config as site_config
+from .models import Project, ContactInfo, TextOnSite, ProjectTag
 
 
 def get_index_page(request):
-    h1 = get_object_or_404(TextOnSite, name='h1')
+    h1 = site_config.h1
 
     return render(request, 'vcard/index.html', {'h1': h1})
 
