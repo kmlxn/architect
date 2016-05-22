@@ -24,7 +24,20 @@
                     </ul>
                 </div>
                 <div id="content" class="content">
-
+                    <script type="text/mustache_template">
+                        {% verbatim %}
+                            <ul class="projects_tags" id="projects_tags">
+                                {{#tags}}
+                                    <li>
+                                        <a href="#" id="{{fields.alias}}">
+                                            {{fields.caption}}
+                                        </a>
+                                    </li>
+                                {{/tags}}
+                            </ul>
+                            <div id="projects"></div>
+                        {% endverbatim %}
+                    </script>
                 </div>
             </div>
 
@@ -39,6 +52,7 @@
 		<script src="/static/vcard/js/birds/renderers/CanvasRenderer.js"></script>
 		<script src="/static/vcard/js/birds/libs/stats.min.js"></script>
 		<script src="/static/vcard/js/birds/obj/Bird.js"></script>
+		<script src="/static/vcard/js/mustache.min.js"></script>
 		<script src="/static/vcard/js/birds/script.js"></script>
     </body>
 </html>

@@ -8,21 +8,9 @@ $(document).ready(function() {
 var get_and_view_projects_tags = function(e) {
     $.ajax("/get_tags/", {
         success: function(tags) {
-            var html = '<ul class="projects_tags" id="projects_tags">';
-
-            for (var i = 0; i < tags.length; i++) {
-                html +=
-                    '<li>\
-                        <a href="#" id="' + tags[i].fields.alias + '">\
-                            ' + tags[i].fields.caption + '\
-                        </a>\
-                    </li>';
-            }
-
-            html += '</ul>\
-                <div id="projects"></div>';
-
-            $('#content').html(html);
+            var template = $('#content [type="text/mustache_template"]').html();
+            var rendered = Mustache.render(template, {tags: tags});
+            $('#content').html(rendered);
             $('#projects_tags a').click(get_and_view_projects);
         },
         error: function(data) {
