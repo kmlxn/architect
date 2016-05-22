@@ -1,2 +1,5 @@
 Django==1.8
+django-constance==1.2
+django-picklefield==0.3.2
 Pillow==2.9.0
+wheel==0.24.0
