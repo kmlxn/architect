@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.core import serializers
 from constance import config as site_config
-from .models import Project, ContactInfo, TextOnSite, ProjectTag
+from .models import Project, ContactInfo, ProjectTag
 
 
 def get_index_page(request):

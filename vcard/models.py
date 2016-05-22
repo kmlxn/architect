@@ -21,9 +21,3 @@ class Project(models.Model):
 
 class ContactInfo(models.Model):
     text = models.CharField(max_length=255)
-
-
-
-class TextOnSite(models.Model):
-    name = models.CharField(max_length=255)
-    text = models.TextField()
