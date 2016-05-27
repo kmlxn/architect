@@ -6,6 +6,7 @@
         <title>architect</title>
         <link rel="shortcut icon" href="/static/vcard/images/favicon.ico" />
         <link href="/static/vcard/css/styles.css" rel="stylesheet">
+        <link href="/static/vcard/css/magnific-popup.css" rel="stylesheet">
     </head>
     <body>
         <div id="birds"></div>
@@ -41,7 +42,9 @@
                                         <div class="projects">
                                             <div class="project">
                                                 <div class="photo">
-                                                    <img src="/media/{{fields.picture}}" alt="" />
+                                                    <a title="{{fields.caption}}" href="/media/{{fields.picture}}">
+                                                        <img src="/media/{{fields.picture}}" alt="" />
+                                                    </a>
                                                 </div>
                                                 <span class="caption">{{fields.caption}}</span>
                                             </div>
@@ -71,6 +74,7 @@
 
 
         <script src="/static/vcard/js/jquery-1.11.3.min.js" charset="utf-8"></script>
+        <script src="/static/vcard/js/jquery.magnific-popup.min.js" charset="utf-8"></script>
         <script src="/static/vcard/js/script.js" charset="utf-8"></script>
 
         <script src="/static/vcard/js/birds/build/three.min.js"></script>

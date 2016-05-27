@@ -17,6 +17,7 @@ class Handler {
         this.$contacts_nav.click(this.get_and_view_contacts_info.bind(this));
         this.$about_me_nav.click(this.get_and_view_about_me_text.bind(this));
         this.$content.on('click', '#projects_tags a', this.get_and_view_projects.bind(this));
+        this.$content.magnificPopup({delegate: '.photo a', type: 'image'});
     }
 
     render() {
@@ -75,5 +76,7 @@ class Handler {
     }
 }
 
-const handler = new Handler();
-handler.run();
+$(document).ready(function() {
+    const handler = new Handler();
+    handler.run();
+});
