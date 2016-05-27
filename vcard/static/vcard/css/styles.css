@@ -55,3 +55,11 @@ ul.projects_tags li {
 #stats {
     display: none;
 }
+
+/* Magnific popup customisation */
+.mfp-bg {
+    background-color: #9B9B9B !important;
+}
+.mfp-figure::after {
+    box-shadow: unset !important;
+}
