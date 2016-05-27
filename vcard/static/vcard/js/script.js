@@ -1,86 +1,79 @@
-$(document).ready(function() {
-    $('#projects_nav').click(get_and_view_projects_tags);
-    $('#contacts_nav').click(get_and_view_contacts_info);
-    $('#about_me_nav').click(get_and_view_about_me_text);
-});
+class Handler {
+    run() {
+        this.cache_dom();
+        this.bind_events();
+    }
 
+    cache_dom() {
+        this.$projects_nav = $('a#projects_nav');
+        this.$contacts_nav = $('a#contacts_nav');
+        this.$about_me_nav = $('a#about_me_nav');
+        this.$content = $('#content');
+        this.template = this.$content.find('[type="text/mustache_template"]').html();
+    }
 
-var get_and_view_projects_tags = function(e) {
-    $.ajax("/get_tags/", {
-        success: function(tags) {
-            var template = $('#content [type="text/mustache_template"]').html();
-            var rendered = Mustache.render(template, {tags: tags});
-            $('#content').html(rendered);
-            $('#projects_tags a').click(get_and_view_projects);
-        },
-        error: function(data) {
+    bind_events() {
+        this.$projects_nav.click(this.get_and_view_projects_tags.bind(this));
+        this.$contacts_nav.click(this.get_and_view_contacts_info.bind(this));
+        this.$about_me_nav.click(this.get_and_view_about_me_text.bind(this));
+        this.$content.on('click', '#projects_tags a', this.get_and_view_projects.bind(this));
+    }
 
-        },
-    });
-    e.preventDefault();
-};
+    render() {
+        const rendered = Mustache.render(this.template, this.data);
+        this.$content.html(rendered);
+    }
 
+    get_and_view_projects_tags(event) {
+        $.get("/get_tags/").done((tags) => {
+            this.data = {
+                tags,
+                has_tags: true,
+            };
 
-var get_and_view_contacts_info = function(e) {
-    $.ajax("/get_contacts/", {
-        success: function(contacts_list) {
-            var html = '<div class="contacts"><ul>';
+            this.render();
+        });
 
-            for (var i = 0; i < contacts_list.length; i++) {
-                html += '<li>' + contacts_list[i].fields.text + '</li>';
-            }
+        event.preventDefault();
+    }
 
-            html += '</div></ul>';
+    get_and_view_contacts_info(event) {
+        $.get("/get_contacts/").done((contacts) => {
+            this.data = {contacts};
+            this.render();
+        });
 
-            $('#content').html(html);
-        },
-        error: function(data) {
+        event.preventDefault();
+    }
 
-        },
-    });
-    e.preventDefault();
-};
+    get_and_view_about_me_text(event) {
+        $.get("/get_about_me_text/").done((about_me) => {
+            this.data = about_me;
+            this.render();
+        });
 
+        event.preventDefault();
+    }
 
-var get_and_view_about_me_text = function(e) {
-    $.ajax('/get_about_me_text/', {
-        success: function(about_me) {
-            about_me = about_me[0];
-            var html = '<div class="about_me">' + about_me.fields.text + '</div>';
+    get_and_view_projects(event) {
+        const project_id = event.currentTarget.id;
+        const link = "/get_projects/" + project_id + "/";
 
-            $('#content').html(html);
-        },
-        error: function(data) {
+        $.get(link).done((projects) => {
+            const tags = this.data.tags;
+            const has_tags = true;
+            this.data = {
+                has_tags,
+                tags,
+                projects,
+            };
 
-        },
-    });
-    e.preventDefault();
-};
+            this.render();
+        });
 
+        event.preventDefault();
+    }
+}
 
-var get_and_view_projects = function(e) {
-    var link = "/get_projects/" + $(this).attr('id') + "/";
-    $.ajax(link, {
-        success: function(projects) {
-            var html = '<div class="projects">';
-
-            for (var i = 0; i < projects.length; i++) {
-                html +=
-                    '<div class="project">\
-                        <div class="photo">\
-                            <img src="/media/' + projects[i].fields.picture + '" alt="" />\
-                        </div>\
-                        <span class="caption">' + projects[i].fields.caption + '</span>\
-                    </div>';
-            }
-
-            html += '</div>';
-
-            $('#projects').html(html);
-        },
-        error: function(data) {
-
-        },
-    });
-    e.preventDefault();
-};
+const handler = new Handler();
+handler.run();

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from constance import config as site_config
 from .models import Project, ContactInfo, ProjectTag
@@ -34,7 +34,4 @@ def get_contacts(request):
 
 
 def get_about_me_text(request):
-    elem = get_object_or_404(TextOnSite, name='about me')
-    json = serializers.serialize('json', [elem])
-
-    return HttpResponse(json, content_type='application/json')
+    return JsonResponse({'about_me': site_config.about_me})

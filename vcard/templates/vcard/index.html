@@ -26,16 +26,42 @@
                 <div id="content" class="content">
                     <script type="text/mustache_template">
                         {% verbatim %}
-                            <ul class="projects_tags" id="projects_tags">
-                                {{#tags}}
-                                    <li>
-                                        <a href="#" id="{{fields.alias}}">
-                                            {{fields.caption}}
-                                        </a>
-                                    </li>
-                                {{/tags}}
-                            </ul>
-                            <div id="projects"></div>
+                            {{#has_tags}}
+                                <ul class="projects_tags" id="projects_tags">
+                                    {{#tags}}
+                                        <li>
+                                            <a href="#" id="{{fields.alias}}">
+                                                {{fields.caption}}
+                                            </a>
+                                        </li>
+                                    {{/tags}}
+                                </ul>
+                                <div id="projects">
+                                    {{#projects}}
+                                        <div class="projects">
+                                            <div class="project">
+                                                <div class="photo">
+                                                    <img src="/media/{{fields.picture}}" alt="" />
+                                                </div>
+                                                <span class="caption">{{fields.caption}}</span>
+                                            </div>
+                                        </div>
+                                    {{/projects}}
+                                </div>
+                            {{/has_tags}}
+                            {{#contacts}}
+                                <div class="contacts">
+                                    <ul>
+                                        <li>{{fields.text}}</li>
+                                    </ul>
+                                </div>
+                            {{/contacts}}
+                            {{#about_me}}
+                                <div class="about_me">
+                                    {{.}}
+                                </div>
+                            {{/about_me}}
+
                         {% endverbatim %}
                     </script>
                 </div>
