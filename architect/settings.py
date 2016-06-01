@@ -115,3 +115,9 @@ CONSTANCE_CONFIG = {
     'h1': ('DID Architecture', 'Header', str),
     'about_me': ('I am architect', 'About me text', str),
 }
+
+# import deploy settings not tracked by source control
+try:
+    from .deploy_settings import *
+except ImportError:
+    pass
