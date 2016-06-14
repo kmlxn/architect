@@ -8,6 +8,11 @@ class ProjectTag(models.Model):
     def __str__(self):
         return self.caption
 
+    def get_data(self):
+        return {
+            'alias': self.alias,
+            'caption': self.caption,
+        }
 
 class Project(models.Model):
     picture = models.ImageField(upload_to='projects')
@@ -17,9 +22,20 @@ class Project(models.Model):
     def __str__(self):
         return self.caption
 
+    def get_data(self):
+        return {
+            'picture': self.picture.url,
+            'caption': self.caption,
+        }
+
 
 class ContactInfo(models.Model):
     text = models.CharField(max_length=255)
 
     def __str__(self):
         return self.text
+
+    def get_data(self):
+        return {
+            'text': self.text,
+        }

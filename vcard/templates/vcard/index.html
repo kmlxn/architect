@@ -31,8 +31,8 @@
                                 <ul class="projects_tags" id="projects_tags">
                                     {{#tags}}
                                         <li>
-                                            <a href="#" id="{{fields.alias}}">
-                                                {{fields.caption}}
+                                            <a href="#" id="{{alias}}">
+                                                {{caption}}
                                             </a>
                                         </li>
                                     {{/tags}}
@@ -42,11 +42,11 @@
                                         <div class="projects">
                                             <div class="project">
                                                 <div class="photo">
-                                                    <a title="{{fields.caption}}" href="/media/{{fields.picture}}">
-                                                        <img src="/media/{{fields.picture}}" alt="" />
+                                                    <a title="{{caption}}" href="{{picture}}">
+                                                        <img src="{{picture}}" alt="" />
                                                     </a>
                                                 </div>
-                                                <span class="caption">{{fields.caption}}</span>
+                                                <span class="caption">{{caption}}</span>
                                             </div>
                                         </div>
                                     {{/projects}}
@@ -55,7 +55,7 @@
                             {{#contacts}}
                                 <div class="contacts">
                                     <ul>
-                                        <li>{{fields.text}}</li>
+                                        <li>{{text}}</li>
                                     </ul>
                                 </div>
                             {{/contacts}}

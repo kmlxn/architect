@@ -49,7 +49,7 @@ class Handler {
 
     get_and_view_about_me_text(event) {
         $.get("/get_about_me_text/").done((about_me) => {
-            this.data = about_me;
+            this.data = {about_me};
             this.render();
         });
 

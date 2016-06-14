@@ -1,6 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse, JsonResponse
-from django.core import serializers
+from django.http import JsonResponse
 from constance import config as site_config
 from .models import Project, ContactInfo, ProjectTag
 
@@ -12,26 +11,23 @@ def get_index_page(request):
 
 
 def get_tags(request):
-    tags = ProjectTag.objects.all()
-    json = serializers.serialize('json', tags)
+    data = [tag.get_data() for tag in ProjectTag.objects.all()]
 
-    return HttpResponse(json, content_type='application/json')
+    return JsonResponse(data, safe=False)
 
 
 def get_projects(request, tag_alias):
     tag = get_object_or_404(ProjectTag, alias=tag_alias)
-    projects = tag.project_set.all()
-    json = serializers.serialize('json', projects)
+    data = [project.get_data() for project in tag.project_set.all()]
 
-    return HttpResponse(json, content_type='application/json')
+    return JsonResponse(data, safe=False)
 
 
 def get_contacts(request):
-    list_ = ContactInfo.objects.all()
-    json = serializers.serialize('json', list_)
+    data = [contact_info.get_data() for contact_info in ContactInfo.objects.all()]
 
-    return HttpResponse(json, content_type='application/json')
+    return JsonResponse(data, safe=False)
 
 
 def get_about_me_text(request):
-    return JsonResponse({'about_me': site_config.about_me})
+    return JsonResponse(site_config.about_me, safe=False)
