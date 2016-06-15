@@ -16,6 +16,7 @@ class ProjectTag(models.Model):
 
 class Project(models.Model):
     caption = models.CharField(max_length=255)
+    url_name = models.CharField(max_length=255, unique=True)
     tag = models.ManyToManyField(ProjectTag)
 
     def __str__(self):
@@ -26,6 +27,7 @@ class Project(models.Model):
 
         return {
             'caption': self.caption,
+            'url_name': self.url_name,
             'pictures': [pic.get_data() for pic in pictures_as_orm],
         }
 

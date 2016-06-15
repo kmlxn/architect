@@ -9,7 +9,7 @@ class ProjectPictureInline(admin.TabularInline):
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    fields = ['caption', 'tag']
+    fields = ['caption', 'tag', 'url_name']
     list_display = ('caption',)
     inlines = [ProjectPictureInline]
 
