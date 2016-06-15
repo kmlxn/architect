@@ -56,17 +56,22 @@ class Handler {
         event.preventDefault();
     }
 
+    prepare_projects(projects) {
+        return projects.map((project) => {
+            project.main_picture = project.pictures[0];
+            return project;
+        });
+    }
+
     get_and_view_projects(event) {
         const tag_alias = event.currentTarget.id;
         const link = "/get_projects/" + tag_alias + "/";
 
-        $.get(link).done((projects) => {
-            const tags = this.data.tags;
-            const has_tags = true;
+        $.get(`/get_projects/${tag_alias}/`).done((projects) => {
             this.data = {
-                has_tags,
-                tags,
-                projects,
+                has_tags: true,
+                tags: this.data.tags,
+                projects: this.prepare_projects(projects),
             };
 
             this.render();

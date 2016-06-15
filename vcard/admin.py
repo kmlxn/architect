@@ -2,11 +2,16 @@ from django.contrib import admin
 from . import models
 
 
+class ProjectPictureInline(admin.TabularInline):
+    model = models.ProjectPicture
+    extra = 3
+    ordering = ('order',)
+
 
 class ProjectAdmin(admin.ModelAdmin):
-    fields = ['picture', 'caption', 'tag']
-    list_display = ('caption', 'picture')
-
+    fields = ['caption', 'tag']
+    list_display = ('caption',)
+    inlines = [ProjectPictureInline]
 
 
 class ContactInfoAdmin(admin.ModelAdmin):

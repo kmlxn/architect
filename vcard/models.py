@@ -15,7 +15,6 @@ class ProjectTag(models.Model):
         }
 
 class Project(models.Model):
-    picture = models.ImageField(upload_to='projects')
     caption = models.CharField(max_length=255)
     tag = models.ManyToManyField(ProjectTag)
 
@@ -23,9 +22,23 @@ class Project(models.Model):
         return self.caption
 
     def get_data(self):
+        pictures_as_orm = self.pictures.order_by('order')
+
         return {
-            'picture': self.picture.url,
             'caption': self.caption,
+            'pictures': [pic.get_data() for pic in pictures_as_orm],
+        }
+
+
+class ProjectPicture(models.Model):
+    picture = models.ImageField(upload_to='projects')
+    order = models.IntegerField(default=0)
+    project = models.ForeignKey(Project, related_name='pictures')
+
+    def get_data(self):
+        return {
+            'url': self.picture.url,
+            'order': self.order,
         }
 
 
