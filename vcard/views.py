@@ -25,7 +25,7 @@ def get_projects(request, tag_alias):
 
 def get_project(request, project_url_name):
     project = get_object_or_404(Project, url_name=project_url_name)
-    print(project.get_main_picture().picture.url)
+
     return render(request, 'vcard/project.html', {'project': project})
 
 

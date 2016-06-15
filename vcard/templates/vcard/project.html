@@ -2,13 +2,13 @@
     <h1>{{ project.caption }}</h1>
     <div class="table">
         <div id="picture_preview" class="cell">
-            <img class="preview" src="{{ project.get_main_picture.picture.url }}"/>
+            <img class="preview" src="{{ project.get_main_picture.source.url }}"/>
         </div>
         <div class="cell">
             <div id="additional_pictures" class="additional_pictures">
                 {% for picture in project.pictures.all %}
-                    <a href="{{ picture.picture.url }}">
-                        <img class="thumb" src="{{ picture.picture.url }}"/>
+                    <a href="{{ picture.source.url }}">
+                        <img class="thumb" src="{{ picture.source.url }}"/>
                     </a>
                 {% endfor %}
                 <div class="unfloat"></div>

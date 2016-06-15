@@ -38,13 +38,13 @@ class Project(models.Model):
 
 
 class ProjectPicture(models.Model):
-    picture = models.ImageField(upload_to='projects')
+    source = models.ImageField(upload_to='projects')
     order = models.IntegerField(default=0)
     project = models.ForeignKey(Project, related_name='pictures')
 
     def get_data(self):
         return {
-            'url': self.picture.url,
+            'url': self.source.url,
             'order': self.order,
         }
 
