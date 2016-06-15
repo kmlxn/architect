@@ -17,7 +17,7 @@ class Handler {
         this.$contacts_nav.click(this.get_and_view_contacts_info.bind(this));
         this.$about_me_nav.click(this.get_and_view_about_me_text.bind(this));
         this.$content.on('click', '#projects_tags a', this.get_and_view_projects.bind(this));
-        this.$content.magnificPopup({delegate: '.photo a', type: 'image'});
+        this.$content.magnificPopup({delegate: '.photo a', type: 'ajax'});
     }
 
     render() {
@@ -65,7 +65,6 @@ class Handler {
 
     get_and_view_projects(event) {
         const tag_alias = event.currentTarget.id;
-        const link = "/get_projects/" + tag_alias + "/";
 
         $.get(`/get_projects/${tag_alias}/`).done((projects) => {
             this.data = {

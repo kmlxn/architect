@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class ProjectTag(models.Model):
@@ -22,12 +23,16 @@ class Project(models.Model):
     def __str__(self):
         return self.caption
 
+    def get_main_picture(self):
+        return self.pictures.order_by('order')[0]
+
     def get_data(self):
         pictures_as_orm = self.pictures.order_by('order')
 
         return {
             'caption': self.caption,
             'url_name': self.url_name,
+            'url': reverse('vcard:get_project', kwargs={'project_url_name': self.url_name}),
             'pictures': [pic.get_data() for pic in pictures_as_orm],
         }
 
