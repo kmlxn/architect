@@ -26,6 +26,9 @@ class Project(models.Model):
     def get_main_picture(self):
         return self.pictures.order_by('order')[0]
 
+    def get_sorted_pictures(self):
+        return self.pictures.order_by('order')
+
     def get_data(self):
         pictures_as_orm = self.pictures.order_by('order')
 

@@ -6,7 +6,7 @@
         </div>
         <div class="cell">
             <div id="additional_pictures" class="additional_pictures">
-                {% for picture in project.pictures.all %}
+                {% for picture in project.get_sorted_pictures %}
                     <a href="{{ picture.source.url }}">
                         <img class="thumb" src="{{ picture.source.url }}"/>
                     </a>
