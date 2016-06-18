@@ -34,8 +34,16 @@ canvas {
     display: inline;
     margin-right: 7px;
 }
+.project {
+    margin-top: 10px;
+}
 .photo img {
     width: 100% !important;
+    display: block;
+}
+.project span {
+    margin-top: 5px;
+    display: block;
 }
 .content {
     margin-top: 20px;
