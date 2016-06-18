@@ -20,8 +20,8 @@ class ContactInfoAdmin(admin.ModelAdmin):
 
 
 class ProjectTagAdmin(admin.ModelAdmin):
-    fields = ['caption', 'alias']
-    list_display = ('caption', 'alias')
+    fields = ['caption', 'url_name']
+    list_display = ('caption', 'url_name')
 
 
 

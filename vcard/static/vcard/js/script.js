@@ -68,9 +68,9 @@ class Handler {
     }
 
     get_and_view_projects(event) {
-        const tag_alias = event.currentTarget.id;
+        const tag_url_name = event.currentTarget.id;
 
-        $.get(`/get_projects/${tag_alias}/`).done((projects) => {
+        $.get(`/get_projects/${tag_url_name}/`).done((projects) => {
             this.data = {
                 has_tags: true,
                 tags: this.data.tags,

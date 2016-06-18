@@ -4,20 +4,21 @@ from django.core.urlresolvers import reverse
 
 class ProjectTag(models.Model):
     caption = models.CharField(max_length=255)
-    alias = models.CharField(max_length=255, unique=True)
+    url_name = models.SlugField(max_length=255, unique=True)
 
     def __str__(self):
         return self.caption
 
     def get_data(self):
         return {
-            'alias': self.alias,
+            'url_name': self.url_name,
             'caption': self.caption,
         }
 
+
 class Project(models.Model):
     caption = models.CharField(max_length=255)
-    url_name = models.CharField(max_length=255, unique=True)
+    url_name = models.SlugField(max_length=255, unique=True)
     tag = models.ManyToManyField(ProjectTag)
     description = models.TextField()
 

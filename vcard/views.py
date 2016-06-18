@@ -16,8 +16,8 @@ def get_tags(request):
     return JsonResponse(data, safe=False)
 
 
-def get_projects(request, tag_alias):
-    tag = get_object_or_404(ProjectTag, alias=tag_alias)
+def get_projects(request, tag_url_name):
+    tag = get_object_or_404(ProjectTag, url_name=tag_url_name)
     data = [project.get_data() for project in tag.project_set.all()]
 
     return JsonResponse(data, safe=False)
