@@ -17,7 +17,11 @@ class Handler {
         this.$contacts_nav.click(this.get_and_view_contacts_info.bind(this));
         this.$about_me_nav.click(this.get_and_view_about_me_text.bind(this));
         this.$content.on('click', '#projects_tags a', this.get_and_view_projects.bind(this));
-        this.$content.magnificPopup({delegate: '.photo a', type: 'ajax'});
+        this.$content.magnificPopup({
+            delegate: '.photo a',
+            type: 'ajax',
+            callbacks: {ajaxContentAdded: this.handle_popup.bind(this)}
+        });
     }
 
     render() {
@@ -78,9 +82,51 @@ class Handler {
 
         event.preventDefault();
     }
+
+    handle_popup() {
+        let projectPopupHandler = new ProjectPopupHandler();
+        projectPopupHandler.run();
+    }
+}
+
+class ProjectPopupHandler {
+    run() {
+        this.cache_dom();
+        this.bind_events();
+        this.prepare_state();
+        this.render();
+    }
+
+    cache_dom() {
+        this.$project_details = $('#project_details');
+        this.$picture_preview = this.$project_details.find('#picture_preview img');
+        this.$pictures = this.$project_details.find('#additional_pictures a');
+    }
+
+    bind_events() {
+        this.$pictures.click(this.preview_picture.bind(this));
+    }
+
+    prepare_state() {
+        this.$active_picture = this.$pictures.first();
+    }
+
+    render() {
+        this.$picture_preview.attr('src', this.$active_picture.attr('href'));
+        this.$picture_preview.parent().attr('href', this.$active_picture.attr('href'));
+        this.$active_picture.addClass('active');
+        this.$active_picture.siblings().removeClass('active');
+    }
+
+    preview_picture(event) {
+        event.preventDefault();
+        this.$active_picture = $(event.currentTarget);
+        this.render();
+    }
 }
 
 $(document).ready(function() {
-    const handler = new Handler();
+    let handler = new Handler();
+
     handler.run();
 });

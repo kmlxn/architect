@@ -93,8 +93,8 @@ ul.projects_tags li {
     margin-left: 10px;
 }
 .project_details .additional_pictures a.active img {
-    filter: brightness(0.3);
-    -webkit-filter: brightness(0.3);
+    filter: brightness(0.5);
+    -webkit-filter: brightness(0.5);
 }
 @media (max-width: 800px) {
     .project_details .table .cell {

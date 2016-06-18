@@ -2,7 +2,9 @@
     <h1>{{ project.caption }}</h1>
     <div class="table">
         <div id="picture_preview" class="cell">
-            <img class="preview" src="{{ project.get_main_picture.source.url }}"/>
+            <a href="{{ project.get_main_picture.source.url }}">
+                <img class="preview" src="{{ project.get_main_picture.source.url }}"/>
+            </a>
         </div>
         <div class="cell">
             <div id="additional_pictures" class="additional_pictures">
