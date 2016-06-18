@@ -113,6 +113,7 @@ CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
 
 CONSTANCE_CONFIG = {
     'h1': ('DID Architecture', 'Header', str),
+    'title': ('DID Architecture', 'Title', str),
     'about_me': ('I am architect', 'About me text', str),
 }
 
