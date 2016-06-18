@@ -5,10 +5,11 @@ from .models import Project, ContactInfo, ProjectTag
 
 
 def get_index_page(request):
-    h1 = site_config.h1
-    title = site_config.title
-
-    return render(request, 'vcard/index.html', {'h1': h1, 'title': title})
+    return render(request, 'vcard/index.html', {
+        'h1': site_config.h1,
+        'title': site_config.title,
+        'meta_description': site_config.meta_description,
+    })
 
 
 def get_tags(request):
